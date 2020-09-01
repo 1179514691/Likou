@@ -37,4 +37,41 @@ public class Solution9 {
 
         return result;
     }
+
+    public int majorityElement2(int[] nums) {
+
+        int value = nums[0]; //假设一开始值
+        int count = 1; //计数
+
+        //摩尔投票算法
+        for (int i = 0; i < nums.length; i++) {
+
+            if (value == nums[i]) {
+                count++;
+            }else {
+                count--;
+            }
+
+            if (count == 0) {
+                value = nums[i];
+                count = 1;
+            }
+        }
+
+        //比较相同的值
+        count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (value == nums[i]) {
+                count++;
+            }
+
+
+            //相同的值是否大于总数的一般
+            if (count > nums.length/2) {
+                return value;
+            }
+        }
+
+        return -1;
+    }
 }
